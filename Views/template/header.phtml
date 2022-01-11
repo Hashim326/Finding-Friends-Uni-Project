@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Find Friends</title>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class=" bg-dark" id="sidebar-wrapper">
+        <div class="text-center text bg-dark" id="page-title">
+
+            <img src="images/logo2.png" alt="Logo" class="img-fluid">
+            <div class="sidebar-heading border-bottom bg-dark text-white">
+                <h1>Find Friends</h1>
+            </div>
+        </div>
+        <div class="list-group list-group-flush bg-dark">
+            <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="index.php">Home</a>
+            <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="myProfile.php">My Profile</a>
+            <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="search.php">Search for Friends</a>
+            <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="myFriends.php">My Friends</a>
+        </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+            <div class="container-fluid">
+                <!--Hide Show menu toggler-->
+                <button class="navbar-toggler-icon border-0 bg-transparent " id="sidebarToggle"></button>
+                <!--Links to login or register page if user is not logged in.-->
+
+                <div class="d-flex collapse navbar-collapse" id="navbarContent">
+                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                            '<li class="nav-item">
+                                <a class="nav-link" href="signIn.php">
+                                    <?php
+                                    //session_start();
+                                    if (isset($_SESSION['loggedIn'])){
+                                        echo("Logout");
+                                    }
+                                    else {
+                                       echo "Sign In / Register";
+                                    }
+                                    ?>
+                                </a></li>
+                        </ul>
+                </div>
+            </div>
+        </nav>
+

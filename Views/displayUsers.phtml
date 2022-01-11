@@ -1,0 +1,32 @@
+
+<!--Albumn to contain cards  Used to display snapshots of some user profiles-->
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <?php foreach ($view->userDataSet as $userData) {
+                echo
+                    '<div class="col-md-4">
+                   <!--card to contain user info-->
+                   <div class="card mb-4 box-shadow">
+                        <div class="card-body">
+                            <h5>Friend ID number: <b class="text-primary">' . $userData->getUserID() . '</b></h5>
+                            <h5>First Name: <b class="text-primary">' . $userData->getUserFirstName() . '</b></h5>
+                            <h5>Last Name: <b class="text-primary">' . $userData->getUserSurname() . '</b></h5>
+                            <div class="d-flex justify-content-end align-items-center">
+                            <form method="post" action="" class="form">
+                                <div class="btn-group">
+                                    <input type="hidden" name="selecIDnumber" value=' . $userData->getUserID() . '>
+                                    <input type="submit" name="viewProfileButton" value="View Profile" class="btn btn-outline-secondary" >
+                                    <input type="submit" name="addFriend" value="Add Friend" class="btn btn-outline-secondary" >
+                                </div>
+                            </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+            }
+            ?>
+        </div
+    </div>
+</div>

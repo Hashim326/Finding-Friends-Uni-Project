@@ -1,0 +1,51 @@
+<?php require("Views/template/header.phtml") ?>
+<!-- Page content generates search form-->
+<div class="container-fluid">
+    <h1 class="mt-4 text-center">Search For Friends</h1>
+</div>
+
+<div class="card mb-6 box-shadow">
+    <div class="card-body">
+        <h4 class="text-center"></h4>
+        <br>
+        <div class="d-flex justify-content-center">
+            <form method="post" action="" class="form">
+                <div class="form-group row pb-2">
+                    <label for="searchVal" class="h5 col-sm-5">Search by name:</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="searchVal">
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end pb-2">
+                    <input type="submit" name="searchButton" value="Search" class="btn btn-outline-dark">
+                </div>
+
+
+                <div class="form-group row pb-2 pt-2 text-warning">
+                    <p><b>
+                            <?php
+                            //returns search error if it exists
+                            if (isset($_SESSION['errorSearch'])){
+                                echo $_SESSION['errorSearch'];
+                            }
+                            ?>
+                        </b>
+                    </p>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<?php
+if (isset($_SESSION['searchVal'])){
+    $searchVal = $_SESSION['searchVal'];
+    $view->userDataSet = $userDataSet->fetchUserByName($searchVal);
+    require_once('Views/displayUsers.phtml');
+}
+?>
+
+
+<?php require ('template/footer.phtml') ?>

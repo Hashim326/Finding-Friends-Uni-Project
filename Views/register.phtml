@@ -1,0 +1,80 @@
+<div class="col-md-6">
+    <!--card to contain registration form-->
+    <div class="card mb-6 box-shadow">
+        <div class="card-body">
+            <h4 class="text-center">Fill out the form below to sign up</h4>
+            <br>
+            <div class="d-flex justify-content-center">
+                <form method="post" action="" class="form">
+
+                    <div class="form-group row pb-2">
+                        <label for="firstNameReg" class="h5 col-sm-6">First Name:</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="firstNameReg">
+                        </div>
+                    </div>
+
+                    <div class="form-group row pb-2">
+                        <label for="lastNameReg" class="h5 col-sm-6">Last Name:</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="lastNameReg">
+                        </div>
+                    </div>
+
+                    <div class="form-group row pb-2">
+                        <label for="phoneNumReg" class="h5 col-sm-6">Phone Number:</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="phoneNumReg">
+                        </div>
+                    </div>
+
+                    <div class="form-group row pb-2">
+                        <label for="usernameReg" class="h5 col-sm-6">Email:</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="usernameReg">
+                        </div>
+                    </div>
+
+                    <div class="form-group row pb-2">
+                        <label for="passwordReg" class="h5 col-sm-6">Password:</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="passwordReg">
+                        </div>
+                    </div>
+
+                    <div class="form-group row pb-2">
+                        <label for="passwordRepReg" class="h5 col-sm-6">Repeat Password:</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="passwordRepReg">
+                        </div>
+                    </div>
+
+                    <div class="form-group row pb-2">
+                        <label for="humanReg" class="col-sm-10">I confirm that I am a human</label>
+                        <div class="col-sm-1">
+                            <input type="checkbox" name="humanReg">
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <input type="submit" name="regButton" value="Sign Up" class="btn btn-outline-dark">
+                    </div>
+
+                    <div class="form-group row pb-2 pt-2 text-warning">
+                        <p>
+                            <b>
+                            <?php
+                            //outputs registration error if it exists
+                            if (isset($_SESSION['errorReg'])){
+                                echo $_SESSION['errorReg'];
+                            }
+                            ?>
+                            </b>
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

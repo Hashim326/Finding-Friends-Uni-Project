@@ -1,0 +1,32 @@
+
+<!--Albumn to contain cards,   Used to display user full user profiles-->
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <?php foreach ($view->userDataSet as $userData) {
+                echo
+                    '<div class="col-md-12">
+                   <!--card to contain user info-->
+                   <div class="card mb-12 box-shadow">
+                        <div class="card-body text-center">
+                            <h5>Friend ID number: <b class="text-primary">' . $userData->getUserID() . '</b></h5>
+                            <h5>Name: <b class="text-primary">' . $userData->getUserFirstName() .' ' . $userData->getUserSurname() . '</b></h5>
+                            <h5>Phone Number: <b class="text-primary">' . $userData->getUserPhoneNumber() . '</b></h5>
+                            <h5>Email Address: <b class="text-primary">' . $userData->getUserEmail() . '</b></h5>
+                            <h5>Last Location: <b class="text-primary">(' . $userData->getUserLat() . ', ' .  $userData->getUserLong() . ')</b></h5>
+                            <div class="d-flex justify-content-end align-items-center">
+                            <form method="post" action="" class="form">
+                                <div class="btn-group">
+                                    <input type="hidden" name="selecID" value="' . $userData->getUserID() . '">
+                                    <input type="submit" name="addFriend" value="Add Friend" class="btn btn-outline-secondary" >
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+            }
+            ?>
+        </div
+    </div>
+</div>

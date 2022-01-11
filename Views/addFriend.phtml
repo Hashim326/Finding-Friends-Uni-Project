@@ -1,0 +1,14 @@
+<?php require("Views/template/header.phtml") ?>
+    <!-- Page content-->
+    <div class="container-fluid">
+        <h1 class="mt-4 text-center">Adding friends...</h1>
+    </div>
+
+<?php if (isset($_SESSION['errorAdd'])){
+//Displays error message if it exists
+    $error = $_SESSION['errorAdd'];
+    echo '<h2 class="mt-4 text-center"> '. $error .' </h2>';
+} ?>
+
+
+<?php require ('template/footer.phtml') ?>
