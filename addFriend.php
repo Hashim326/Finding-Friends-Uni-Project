@@ -17,11 +17,12 @@ if(isset($_SESSION['loggedIn'])){
         }
         else {
             if($friend->checkFrienshipExists($myID, $friendID) == false) {
+                //var_dump($friend->checkFrienshipExists($myID, $friendID));
                 $friend->registerFriendship($myID, $friendID);
-                $_SESSION['errorAdd'] = "Friendship created";
+                $_SESSION['errorAdd'] = "A friend request has been sent";
             }
             else{
-                $_SESSION['errorAdd'] = "This friendship already exists";
+                $_SESSION['errorAdd'] = "You are already friends with the user";
             }
 
         }

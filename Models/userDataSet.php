@@ -56,10 +56,19 @@ class userDataSet
 
     //fetches user by their ID
     public function fetchUserByID($ID) {
-        $sqlQuery = 'SELECT * FROM users WHERE userID = ?';
 
-        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
-        $statement->execute(array($ID)); // execute the PDO statement
+        if (is_array($ID)) {
+            $sqlQuery = "SELECT * FROM users WHERE userID IN (".implode(',', $ID).")";
+            $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+            $statement->execute(); // execute the PDO statement
+        }
+        else {
+            $sqlQuery = 'SELECT * FROM users WHERE userID = ?';
+            $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+            $statement->execute(array($ID)); // execute the PDO statement
+        }
+
+
 
         $dataSet = [];
         while ($row = $statement->fetch()) {
@@ -74,7 +83,7 @@ class userDataSet
         $lat = (rand(9000000, -9000000)/100000);
         $long = (rand(18000000, -18000000)/100000);
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-        echo ($password . "  " . $passwordHash);
+        //echo ($password . "  " . $passwordHash);
         $sqlQuery = "insert into users (userFirstName, userSurname, userPhoneNumber, userEmail, userPassword, userLat, userLong) values  (?,?,?,?,?,?,?)";
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute(array($name,$surname,$phone, $email,$passwordHash,$lat,$long));

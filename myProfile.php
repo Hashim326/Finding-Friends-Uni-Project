@@ -7,6 +7,7 @@ if(isset($_SESSION['loggedIn'])){
 
     $_SESSION['selectedID'] = $_SESSION['ID'];
     require_once('Models/userDataSet.php');
+    require_once('Models/friend.php');
 
     $view = new stdClass();
     $view->pageTitle = 'View Profile Page';

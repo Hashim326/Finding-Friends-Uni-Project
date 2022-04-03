@@ -4,6 +4,24 @@
     <div class="container">
         <div class="row">
             <?php foreach ($view->userDataSet as $userData) {
+                if ($userData->getUserID() == $_SESSION['ID']){
+                    $friendBtn = " ";
+
+                }
+                else if (isset($_SESSION['loggedIn'])){
+                    $friend = new friend();
+                    $myID = $_SESSION['ID'];
+                    $friendID = $userData->getUserID();
+                    if ($friend->checkFrienshipExists($myID,$friendID) == true){
+                        $friendBtn = " ";
+                    }else{
+                        $friendBtn = "<input type=\"submit\" name=\"addFriend\" value=\"Add Friend\" class=\"btn btn-outline-secondary\" > ";
+                    }
+
+                }
+                else{
+                    $friendBtn = "<input type=\"submit\" name=\"addFriend\" value=\"Add Friend\" class=\"btn btn-outline-secondary\" > ";
+                }
                 echo
                     '<div class="col-md-12">
                    <!--card to contain user info-->
@@ -17,8 +35,10 @@
                             <div class="d-flex justify-content-end align-items-center">
                             <form method="post" action="" class="form">
                                 <div class="btn-group">
-                                    <input type="hidden" name="selecID" value="' . $userData->getUserID() . '">
-                                    <input type="submit" name="addFriend" value="Add Friend" class="btn btn-outline-secondary" >
+                                    <input type="hidden" name="selecID" value="' . $userData->getUserID() . '">';
+                                    //echo '<input type="submit" name="addFriend" value="Add Friend" class="btn btn-outline-secondary" >';
+                                    echo $friendBtn;
+                                    echo '
                                 </div>
                             </form>
                             </div>

@@ -46,11 +46,20 @@ class friendsDataSet
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
         $statement->execute(array($myID, $friendID)); // execute the PDO statement
 
+        $dataSet = [];
         while ($row = $statement->fetch()) {
             $dataSet[] = new friendData($row);
         }
 
-        $dataSet = [];
+        $sqlQuery = 'SELECT friendID, friend2 FROM friends WHERE (friend1 = ? AND friend2 = ?)';
+
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(array($friendID, $myID)); // execute the PDO statement
+
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new friendData($row);
+        }
+
         return $dataSet;
     }
 
