@@ -1,12 +1,11 @@
 <?php
 
 
-
 require_once('Models/Register.php');
 
 
 //performs check and registers users
-if(isset($_POST["regButton"])){
+if (isset($_POST["regButton"])) {
     $register = new Register();
     $nameReg = $_POST["firstNameReg"];
     $surnameReg = $_POST["lastNameReg"];
@@ -15,33 +14,29 @@ if(isset($_POST["regButton"])){
     $passReg = $_POST["passwordReg"];
     $passRepReg = $_POST["passwordRepReg"];
 
-    if(!empty($nameReg) && !empty($surnameReg) && !empty($phoneReg) && !empty($emailReg) && !empty($passReg) && !empty($passRepReg)){
+    if (!empty($nameReg) && !empty($surnameReg) && !empty($phoneReg) && !empty($emailReg) && !empty($passReg) && !empty($passRepReg)) {
 
-        if(isset($_POST["humanReg"])){
-            if($register->checkPassword($passReg, $passRepReg) == true) {
-                if($register->checkUserExists($emailReg) == false){
-                    $register->registerUser($nameReg, $surnameReg, $phoneReg, $emailReg,$passReg);
+        if (isset($_POST["humanReg"])) {
+            if ($register->checkPassword($passReg, $passRepReg) == true) {
+                if ($register->checkUserExists($emailReg) == false) {
+                    $register->registerUser($nameReg, $surnameReg, $phoneReg, $emailReg, $passReg);
                     unset($_SESSION['errorReg']);
-                }
-                else{
+                } else {
                     $_SESSION['errorReg'] = "A user with this email already exists";
                 }
-            }
-            else{
+            } else {
                 $_SESSION['errorReg'] = "Please make sure passwords match";
             }
-        }
-        else{
+        } else {
             $_SESSION['errorReg'] = "Please verify that you are human";
         }
-    }
-    else {
+    } else {
         $_SESSION['errorReg'] = "Please ensure you have filled in all the fields ";
     }
 
 }
 //performs checks and logs user in
-if(isset($_POST['loginbutton'])) {
+if (isset($_POST['loginbutton'])) {
 
     $emailLogIn = $_POST['usernameLogIn'];
     $passLogIn = $_POST["passwordLogIn"];

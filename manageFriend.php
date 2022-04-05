@@ -25,8 +25,7 @@ if (isset($_SESSION['loggedIn'])) {
                     $_SESSION['errorAdd'] = "You are already friends with the user";
                 }
             }
-        }
-        elseif ($_SESSION['friendAction'] == "del") {
+        } elseif ($_SESSION['friendAction'] == "del") {
             if ($myID == $friendID) {
                 $_SESSION['errorAdd'] = "Friendship delete error";
             } else {
@@ -38,8 +37,7 @@ if (isset($_SESSION['loggedIn'])) {
                     $_SESSION['errorAdd'] = "Friendship delete error: No friendship currently exists";
                 }
             }
-        }
-        elseif ($_SESSION['friendAction'] == "accept"){
+        } elseif ($_SESSION['friendAction'] == "accept") {
             if ($myID == $friendID) {
                 $_SESSION['errorAdd'] = "There was an issue accepting this friend request";
             } else {
@@ -51,8 +49,7 @@ if (isset($_SESSION['loggedIn'])) {
                     $_SESSION['errorAdd'] = "Friendship request accept error: No request currently exists";
                 }
             }
-        }
-        elseif ($_SESSION['friendAction'] == "reject"){
+        } elseif ($_SESSION['friendAction'] == "reject") {
             if ($myID == $friendID) {
                 $_SESSION['errorAdd'] = "There was an issue rejecting this friend request";
             } else {
@@ -64,8 +61,7 @@ if (isset($_SESSION['loggedIn'])) {
                     $_SESSION['errorAdd'] = "Friendship request accept error: No request currently exists";
                 }
             }
-        }
-        else
+        } else
             if ($_SESSION['friendAction'] == "cancel") {
                 if ($myID == $friendID) {
                     $_SESSION['errorAdd'] = "Friend request cancellation error";
@@ -79,11 +75,10 @@ if (isset($_SESSION['loggedIn'])) {
                     }
                 }
             }
-    }
-    else{
+    } else {
         $_SESSION['errorAdd'] = "No action was selected, please return to the previous page";
     }
-    
+
     unset($_SESSION['friendAction']);
     require_once('Views/manageFriend.phtml');
 

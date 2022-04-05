@@ -3,7 +3,7 @@ session_start();
 
 //if user is logged in function is performed, otherwise user taken to login screen
 
-if(isset($_SESSION['loggedIn'])){
+if (isset($_SESSION['loggedIn'])) {
 
     $_SESSION['selectedID'] = $_SESSION['ID'];
     require_once('Models/userDataSet.php');
@@ -17,7 +17,7 @@ if(isset($_SESSION['loggedIn'])){
 
     require_once('Views/viewProfile.phtml');
 
-}else{
+} else {
     header("Location: signIn.php");
 }
 

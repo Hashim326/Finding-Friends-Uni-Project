@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
     <title>Find Friends</title>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="d-flex" id="wrapper">
@@ -21,14 +21,20 @@
             </div>
         </div>
         <div class="list-group list-group-flush bg-dark">
-            <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="index.php">Home</a>
-            <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="myProfile.php">My Profile</a>
+            <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom"
+               href="index.php">Home</a>
+            <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="myProfile.php">My
+                Profile</a>
             <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="search.php">Search</a>
-            <a class="list-group-item disabled list-group-item-action p-3 bg-dark text-white border-bottom " href="">Friends &#8628;</a>
+            <a class="list-group-item disabled list-group-item-action p-3 bg-dark text-white border-bottom " href="">Friends
+                &#8628;</a>
             <div class="list-group list-group-flush bg-dark">
-                <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="myFriends.php"> &emsp; My Friends List</a>
-                <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="receivedRequests.php"> &emsp; Received Requests</a>
-                <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom" href="sentRequests.php"> &emsp; Sent Requests</a>
+                <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom"
+                   href="myFriends.php"> &emsp; My Friends List</a>
+                <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom"
+                   href="receivedRequests.php"> &emsp; Received Requests</a>
+                <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom"
+                   href="sentRequests.php"> &emsp; Sent Requests</a>
             </div>
         </div>
     </div>
@@ -42,20 +48,20 @@
                 <!--Links to login or register page if user is not logged in.-->
 
                 <div class="d-flex collapse navbar-collapse" id="navbarContent">
-                        <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                            '<li class="nav-item">
-                                <a class="nav-link" href="signIn.php">
-                                    <?php
-                                    //session_start();
-                                    if (isset($_SESSION['loggedIn'])){
-                                        echo("Logout");
-                                    }
-                                    else {
-                                       echo "Sign In / Register";
-                                    }
-                                    ?>
-                                </a></li>
-                        </ul>
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        '
+                        <li class="nav-item">
+                            <a class="nav-link" href="signIn.php">
+                                <?php
+                                //session_start();
+                                if (isset($_SESSION['loggedIn'])) {
+                                    echo("Logout");
+                                } else {
+                                    echo "Sign In / Register";
+                                }
+                                ?>
+                            </a></li>
+                    </ul>
                 </div>
             </div>
         </nav>

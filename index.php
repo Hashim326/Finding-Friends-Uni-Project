@@ -8,7 +8,7 @@ $view = new stdClass();
 $view->pageTitle = 'Homepage';
 
 $userDataSet = new userDataSet();
-$view -> userDataSet = $userDataSet->fetchAllUsers();
+$view->userDataSet = $userDataSet->fetchAllUsers();
 require_once("Views/index.phtml");
 
 

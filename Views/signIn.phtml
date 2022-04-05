@@ -44,12 +44,12 @@
 
                                 <div class="form-group row pb-2 pt-2 text-warning">
                                     <p><b>
-                                        <?php
-                                        //returns login error if it exists
-                                        if (isset($_SESSION['errorLogIn'])){
-                                            echo $_SESSION['errorLogIn'];
-                                        }
-                                        ?>
+                                            <?php
+                                            //returns login error if it exists
+                                            if (isset($_SESSION['errorLogIn'])) {
+                                                echo $_SESSION['errorLogIn'];
+                                            }
+                                            ?>
                                         </b>
                                     </p>
                                 </div>
@@ -65,5 +65,5 @@
     </div>
 </div>
 
-<?php require ('template/footer.phtml') ?>
+<?php require('template/footer.phtml') ?>
 

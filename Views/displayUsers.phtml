@@ -1,10 +1,9 @@
-
 <!--Albumn to contain cards  Used to display snapshots of some user profiles-->
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
             <?php foreach ($view->userDataSet as $userData) {
-                require ('buttonTypeController.php');
+                require('buttonTypeController.php');
                 echo
                     '<div class="col-md-4">
                    <!--card to contain user info-->
@@ -18,12 +17,12 @@
                                 <div class="btn-group">
                                     <input type="hidden" name="selecIDnumber" value=' . $userData->getUserID() . '>
                                     <input type="submit" name="viewProfileButton" value="View Profile" class="btn btn-outline-secondary" >';
-                                    //echo '<input type="submit" name="addFriend" value="Add Friend" class="btn btn-outline-secondary" >';
-                                    echo $friendBtn;
-                                    if (isset($acceptBtn)){
-                                        echo $acceptBtn;
-                                    };
-                                    echo ' 
+                //echo '<input type="submit" name="addFriend" value="Add Friend" class="btn btn-outline-secondary" >';
+                echo $friendBtn;
+                if (isset($acceptBtn)) {
+                    echo $acceptBtn;
+                }
+                echo ' 
                                 </div>
                             </form>
                                 

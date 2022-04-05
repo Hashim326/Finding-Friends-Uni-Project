@@ -6,7 +6,7 @@
 
 <?php
 //var_dump($_SESSION['selectedID']);
-if (isset($_SESSION['selectedID'])){
+if (isset($_SESSION['selectedID'])) {
     $selectedID = $_SESSION['selectedID'];
     $view->userDataSet = $userDataSet->fetchUserByID($selectedID);
     require_once('Views/displayProfile.phtml');
@@ -14,4 +14,4 @@ if (isset($_SESSION['selectedID'])){
 ?>
 
 
-<?php require ('template/footer.phtml') ?>
+<?php require('template/footer.phtml') ?>

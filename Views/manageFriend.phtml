@@ -4,11 +4,11 @@
         <h1 class="mt-4 text-center">Friend Management</h1>
     </div>
 
-<?php if (isset($_SESSION['errorAdd'])){
+<?php if (isset($_SESSION['errorAdd'])) {
 //Displays error message if it exists
     $error = $_SESSION['errorAdd'];
-    echo '<h2 class="mt-4 text-center pb-2 pt-2 text-warning"> '. $error .' </h2>';
+    echo '<h2 class="mt-4 text-center pb-2 pt-2 text-warning"> ' . $error . ' </h2>';
 } ?>
 
 
-<?php require ('template/footer.phtml') ?>
+<?php require('template/footer.phtml') ?>

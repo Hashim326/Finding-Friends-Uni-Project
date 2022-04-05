@@ -10,39 +10,38 @@ $view = new stdClass();
 $view->pageTitle = 'Sent Requests';
 
 $friendsDataSet = new friendsDataSet();
-$view -> friendsDataSet = $friendsDataSet->fetchSentRequests();
+$view->friendsDataSet = $friendsDataSet->fetchSentRequests();
 //var_dump($friendsDataSet);
 $userDataSet = new userDataSet();
 $view->userDataSet = $userDataSet;
 //$dataSet = [];
 $friendIDArr = [];
 
-if ($view -> friendsDataSet != null){
-    foreach ($view->friendsDataSet as $friendData){
+if ($view->friendsDataSet != null) {
+    foreach ($view->friendsDataSet as $friendData) {
 
         //var_dump($friendData);
-        $friendID = $friendData -> getFriendID();
+        $friendID = $friendData->getFriendID();
 
         //var_dump($friendID);
         array_push($friendIDArr, $friendID);
 
 
     }
-    $view -> userDataSet = $userDataSet->fetchUserByID($friendIDArr);
-    foreach ($view->userDataSet as $userData){
+    $view->userDataSet = $userDataSet->fetchUserByID($friendIDArr);
+    foreach ($view->userDataSet as $userData) {
         //var_dump($userData);
     }
     $_SESSION['friendError'] = "";
-}
-else {
+} else {
     $_SESSION['friendError'] = "You haven't sent any friend requests";
 }
 
 
 //if user is logged in function is performed, otherwise user taken to login screen
-if (isset($_SESSION['loggedIn'])){
+if (isset($_SESSION['loggedIn'])) {
     //var_dump($dataSet);
     require_once('Views/myFriends.phtml');
-} else{
+} else {
     header("Location: signIn.php");
 }

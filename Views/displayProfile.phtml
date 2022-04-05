@@ -1,25 +1,22 @@
-
 <!--Albumn to contain cards,   Used to display user full user profiles-->
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
             <?php foreach ($view->userDataSet as $userData) {
-                if ($userData->getUserID() == $_SESSION['ID']){
+                if ($userData->getUserID() == $_SESSION['ID']) {
                     $friendBtn = " ";
 
-                }
-                else if (isset($_SESSION['loggedIn'])){
+                } else if (isset($_SESSION['loggedIn'])) {
                     $friend = new friend();
                     $myID = $_SESSION['ID'];
                     $friendID = $userData->getUserID();
-                    if ($friend->checkFrienshipExists($myID,$friendID) == true){
+                    if ($friend->checkFrienshipExists($myID, $friendID) == true) {
                         $friendBtn = " ";
-                    }else{
+                    } else {
                         $friendBtn = "<input type=\"submit\" name=\"addFriend\" value=\"Add Friend\" class=\"btn btn-outline-secondary\" > ";
                     }
 
-                }
-                else{
+                } else {
                     $friendBtn = "<input type=\"submit\" name=\"addFriend\" value=\"Add Friend\" class=\"btn btn-outline-secondary\" > ";
                 }
                 echo
@@ -28,17 +25,17 @@
                    <div class="card mb-12 box-shadow">
                         <div class="card-body text-center">
                             <h5>Friend ID number: <b class="text-primary">' . $userData->getUserID() . '</b></h5>
-                            <h5>Name: <b class="text-primary">' . $userData->getUserFirstName() .' ' . $userData->getUserSurname() . '</b></h5>
+                            <h5>Name: <b class="text-primary">' . $userData->getUserFirstName() . ' ' . $userData->getUserSurname() . '</b></h5>
                             <h5>Phone Number: <b class="text-primary">' . $userData->getUserPhoneNumber() . '</b></h5>
                             <h5>Email Address: <b class="text-primary">' . $userData->getUserEmail() . '</b></h5>
-                            <h5>Last Location: <b class="text-primary">(' . $userData->getUserLat() . ', ' .  $userData->getUserLong() . ')</b></h5>
+                            <h5>Last Location: <b class="text-primary">(' . $userData->getUserLat() . ', ' . $userData->getUserLong() . ')</b></h5>
                             <div class="d-flex justify-content-end align-items-center">
                             <form method="post" action="" class="form">
                                 <div class="btn-group">
                                     <input type="hidden" name="selecID" value="' . $userData->getUserID() . '">';
-                                    //echo '<input type="submit" name="addFriend" value="Add Friend" class="btn btn-outline-secondary" >';
-                                    echo $friendBtn;
-                                    echo '
+                //echo '<input type="submit" name="addFriend" value="Add Friend" class="btn btn-outline-secondary" >';
+                echo $friendBtn;
+                echo '
                                 </div>
                             </form>
                             </div>

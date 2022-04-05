@@ -2,7 +2,7 @@
 session_start();
 
 //Full profile view shown if logged in
-if(isset($_SESSION['loggedIn'])){
+if (isset($_SESSION['loggedIn'])) {
 
 
     require_once('Models/userDataSet.php');
@@ -16,7 +16,7 @@ if(isset($_SESSION['loggedIn'])){
 
     require_once('Views/viewProfile.phtml');
 
-}else{
+} else {
     header("Location: signIn.php");
 }
 
