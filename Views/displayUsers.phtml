@@ -4,24 +4,7 @@
     <div class="container">
         <div class="row">
             <?php foreach ($view->userDataSet as $userData) {
-                if ($view->pageTitle == 'My Friends'){
-                    $friendBtn = " ";
-
-                }
-                else if (isset($_SESSION['loggedIn'])){
-                    $friend = new friend();
-                    $myID = $_SESSION['ID'];
-                    $friendID = $userData->getUserID();
-                    if ($friend->checkFrienshipExists($myID,$friendID) == true){
-                        $friendBtn = " ";
-                    }else{
-                        $friendBtn = "<input type=\"submit\" name=\"addFriend\" value=\"Add Friend\" class=\"btn btn-outline-secondary\" > ";
-                    }
-
-                }
-                else{
-                    $friendBtn = "<input type=\"submit\" name=\"addFriend\" value=\"Add Friend\" class=\"btn btn-outline-secondary\" > ";
-                }
+                require ('buttonTypeController.php');
                 echo
                     '<div class="col-md-4">
                    <!--card to contain user info-->
@@ -37,6 +20,9 @@
                                     <input type="submit" name="viewProfileButton" value="View Profile" class="btn btn-outline-secondary" >';
                                     //echo '<input type="submit" name="addFriend" value="Add Friend" class="btn btn-outline-secondary" >';
                                     echo $friendBtn;
+                                    if (isset($unknown)){
+                                        echo $unknown;
+                                    };
                                     echo ' 
                                 </div>
                             </form>

@@ -7,40 +7,42 @@ require_once('Models/friend.php');
 require_once('buttonController.php');
 
 $view = new stdClass();
-$view->pageTitle = 'My Friends';
+$view->pageTitle = 'Sent Requests';
 
 $friendsDataSet = new friendsDataSet();
-$view->friendsDataSet = $friendsDataSet->fetchAllFriends();
+$view -> friendsDataSet = $friendsDataSet->fetchSentRequests();
 //var_dump($friendsDataSet);
 $userDataSet = new userDataSet();
 $view->userDataSet = $userDataSet;
 //$dataSet = [];
 $friendIDArr = [];
 
-if ($view->friendsDataSet != null) {
-    foreach ($view->friendsDataSet as $friendData) {
+if ($view -> friendsDataSet != null){
+    foreach ($view->friendsDataSet as $friendData){
         echo "</br>";
         var_dump($friendData);
-        $friendID = $friendData->getFriendID();
+        $friendID = $friendData -> getFriendID();
         echo "</br>";
         //var_dump($friendID);
         array_push($friendIDArr, $friendID);
 
 
     }
-    $view->userDataSet = $userDataSet->fetchUserByID($friendIDArr);
-    foreach ($view->userDataSet as $userData) {
+    $view -> userDataSet = $userDataSet->fetchUserByID($friendIDArr);
+    foreach ($view->userDataSet as $userData){
         var_dump($userData);
     }
     $_SESSION['friendError'] = "";
-} else {
-    $_SESSION['friendError'] = "You currently have no friends";
+}
+else {
+    $_SESSION['friendError'] = "There are no pending sent friend requests";
 }
 
+
 //if user is logged in function is performed, otherwise user taken to login screen
-if (isset($_SESSION['loggedIn'])) {
+if (isset($_SESSION['loggedIn'])){
     //var_dump($dataSet);
     require_once('Views/myFriends.phtml');
-} else {
+} else{
     header("Location: signIn.php");
 }

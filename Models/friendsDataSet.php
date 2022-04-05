@@ -39,7 +39,22 @@ class friendsDataSet
         return $dataSet;
     }
 
-    //checks if friend exists already (Not functioning properly)
+    public function fetchSentRequests()
+    {
+        $myID = $_SESSION['ID'];
+        $sqlQuery = 'SELECT friendID, friend2 FROM friends WHERE (relationship = 1 AND friend1 = ?)';
+
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(array($myID)); // execute the PDO statement
+
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new friendData($row);
+        }
+
+        return $dataSet;
+    }
+
+    //checks if friend exists already
     public function friendCheck($myID, $friendID){
         $sqlQuery = 'SELECT friendID, friend2 FROM friends WHERE (friend1 = ? AND friend2 = ?)';
 
@@ -51,7 +66,7 @@ class friendsDataSet
             $dataSet[] = new friendData($row);
         }
 
-        $sqlQuery = 'SELECT friendID, friend2 FROM friends WHERE (friend1 = ? AND friend2 = ?)';
+        //$sqlQuery = 'SELECT friendID, friend2 FROM friends WHERE (friend1 = ? AND friend2 = ?)';
 
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
         $statement->execute(array($friendID, $myID)); // execute the PDO statement
@@ -71,4 +86,21 @@ class friendsDataSet
         $statement->execute(array($myID, $friendID, 1));
     }
 
+    public function deleteFriendship($myID, $friendID)
+    {
+        $sqlQuery = "delete from friends where (friend1 = ? AND friend2 = ? AND relationship = ?) ";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute(array($myID, $friendID, 2));
+
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute(array($friendID, $myID, 2));
+    }
+
+    public function cancelFriendship($myID, $friendID)
+    {
+        $sqlQuery = "delete from friends where (friend1 = ? AND friend2 = ? AND relationship = ?) ";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute(array($myID, $friendID, 1));
+
+    }
 }

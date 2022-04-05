@@ -1,9 +1,13 @@
 <?php require("Views/template/header.phtml") ?>
 <!-- Page content-->
+<?php echo '
 <div class="container-fluid">
-    <h1 class="mt-4 text-center">My Friends</h1>
-</div>
+    <h1 class="mt-4 text-center">'.$view->pageTitle.'</h1>
+    <h2 class="mt-3 text-center">'.$_SESSION['friendError'].'</h2>
+</div> ';
 
+unset($_SESSION['friendError'])
+?>
 <?php require ('displayUsers.phtml') ?>
 
 <?php require ('template/footer.phtml') ?>

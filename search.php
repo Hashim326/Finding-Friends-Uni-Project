@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('viewProfileController.php');
+require_once('buttonController.php');
 unset($_SESSION['searchVal']);
 require_once('Models/userDataSet.php');
 

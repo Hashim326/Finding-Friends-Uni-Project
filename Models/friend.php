@@ -23,4 +23,14 @@ class friend
         $friendsDataSet -> registerFriendship($myID, $friendID);
     }
 
+    function deleteFriendship($myID, $friendID){
+        $friendsDataSet = new friendsDataSet();
+        $friendsDataSet -> deleteFriendship($myID, $friendID);
+    }
+
+    function cancelFriendship($myID, $friendID){
+        $friendsDataSet = new friendsDataSet();
+        $friendsDataSet -> cancelFriendship($myID, $friendID);
+    }
+
 }
