@@ -19,10 +19,10 @@ $friendIDArr = [];
 
 if ($view->friendsDataSet != null) {
     foreach ($view->friendsDataSet as $friendData) {
-        echo "</br>";
-        var_dump($friendData);
+
+        //var_dump($friendData);
         $friendID = $friendData->getFriendID();
-        echo "</br>";
+
         //var_dump($friendID);
         array_push($friendIDArr, $friendID);
 
@@ -30,7 +30,7 @@ if ($view->friendsDataSet != null) {
     }
     $view->userDataSet = $userDataSet->fetchUserByID($friendIDArr);
     foreach ($view->userDataSet as $userData) {
-        var_dump($userData);
+        //var_dump($userData);
     }
     $_SESSION['friendError'] = "";
 } else {

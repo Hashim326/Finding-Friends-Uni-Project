@@ -39,6 +39,32 @@ if (isset($_SESSION['loggedIn'])) {
                 }
             }
         }
+        elseif ($_SESSION['friendAction'] == "accept"){
+            if ($myID == $friendID) {
+                $_SESSION['errorAdd'] = "There was an issue accepting this friend request";
+            } else {
+                if ($friend->checkFrienshipExists($myID, $friendID) == true) {
+                    //var_dump($friend->checkFrienshipExists($myID, $friendID));
+                    $friend->acceptFriendship($myID, $friendID);
+                    $_SESSION['errorAdd'] = "This friend request has been accepted";
+                } else {
+                    $_SESSION['errorAdd'] = "Friendship request accept error: No request currently exists";
+                }
+            }
+        }
+        elseif ($_SESSION['friendAction'] == "reject"){
+            if ($myID == $friendID) {
+                $_SESSION['errorAdd'] = "There was an issue rejecting this friend request";
+            } else {
+                if ($friend->checkFrienshipExists($myID, $friendID) == true) {
+                    //var_dump($friend->checkFrienshipExists($myID, $friendID));
+                    $friend->rejectFriendship($myID, $friendID);
+                    $_SESSION['errorAdd'] = "This friend request has been rejected";
+                } else {
+                    $_SESSION['errorAdd'] = "Friendship request accept error: No request currently exists";
+                }
+            }
+        }
         else
             if ($_SESSION['friendAction'] == "cancel") {
                 if ($myID == $friendID) {

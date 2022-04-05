@@ -7,10 +7,10 @@ require_once('Models/friend.php');
 require_once('buttonController.php');
 
 $view = new stdClass();
-$view->pageTitle = 'Sent Requests';
+$view->pageTitle = 'Received Requests';
 
 $friendsDataSet = new friendsDataSet();
-$view -> friendsDataSet = $friendsDataSet->fetchSentRequests();
+$view -> friendsDataSet = $friendsDataSet->fetchRecRequests();
 //var_dump($friendsDataSet);
 $userDataSet = new userDataSet();
 $view->userDataSet = $userDataSet;
@@ -35,7 +35,7 @@ if ($view -> friendsDataSet != null){
     $_SESSION['friendError'] = "";
 }
 else {
-    $_SESSION['friendError'] = "You haven't sent any friend requests";
+    $_SESSION['friendError'] = "You haven't received any friend requests";
 }
 
 

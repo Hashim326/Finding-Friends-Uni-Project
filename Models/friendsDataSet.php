@@ -47,6 +47,23 @@ class friendsDataSet
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
         $statement->execute(array($myID)); // execute the PDO statement
 
+        $dataSet =[];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new friendData($row);
+        }
+
+        return $dataSet;
+    }
+
+    public function fetchRecRequests()
+    {
+        $myID = $_SESSION['ID'];
+        $sqlQuery = 'SELECT friendID, friend1 FROM friends WHERE (relationship = 1 AND friend2 = ?)';
+
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(array($myID)); // execute the PDO statement
+
+        $dataSet =[];
         while ($row = $statement->fetch()) {
             $dataSet[] = new friendData($row);
         }
@@ -81,14 +98,14 @@ class friendsDataSet
     //Creates a friendship in the database
     public function registerFriendship($myID, $friendID)
     {
-        $sqlQuery = "insert into friends (friend1, friend2, relationship) values  (?,?,?)";
+        $sqlQuery = "INSERT INTO friends (friend1, friend2, relationship) VALUES  (?,?,?)";
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute(array($myID, $friendID, 1));
     }
 
     public function deleteFriendship($myID, $friendID)
     {
-        $sqlQuery = "delete from friends where (friend1 = ? AND friend2 = ? AND relationship = ?) ";
+        $sqlQuery = "DELETE FROM friends WHERE (friend1 = ? AND friend2 = ? AND relationship = ?) ";
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute(array($myID, $friendID, 2));
 
@@ -98,9 +115,25 @@ class friendsDataSet
 
     public function cancelFriendship($myID, $friendID)
     {
-        $sqlQuery = "delete from friends where (friend1 = ? AND friend2 = ? AND relationship = ?) ";
+        $sqlQuery = "DELETE FROM friends WHERE (friend1 = ? AND friend2 = ? AND relationship = ?) ";
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute(array($myID, $friendID, 1));
+
+    }
+
+    public function rejectFriendship($myID, $friendID)
+    {
+        $sqlQuery = "DELETE FROM friends WHERE (friend1 = ? AND friend2 = ? AND relationship = ?) ";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute(array($friendID, $myID, 1));
+
+    }
+
+    public function acceptFriendship($myID, $friendID)
+    {
+        $sqlQuery = "UPDATE friends SET relationship = 2 WHERE (friend1 = ? AND friend2 = ? AND relationship = ?) ";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute(array($friendID, $myID, 1));
 
     }
 }

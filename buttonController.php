@@ -25,3 +25,15 @@ if(isset($_POST['cancelFriend'])){
     $_SESSION['friendAction'] = "cancel";
     header("Location: manageFriend.php");
 }
+//Rejects Friend request
+if(isset($_POST['rejectFriend'])){
+    $_SESSION['selectedID'] = $_POST["selecIDnumber"];
+    $_SESSION['friendAction'] = "reject";
+    header("Location: manageFriend.php");
+}
+//Accepts Friend request
+if(isset($_POST['acceptFriend'])){
+    $_SESSION['selectedID'] = $_POST["selecIDnumber"];
+    $_SESSION['friendAction'] = "accept";
+    header("Location: manageFriend.php");
+}

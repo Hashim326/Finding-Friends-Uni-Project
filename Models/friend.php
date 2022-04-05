@@ -33,4 +33,13 @@ class friend
         $friendsDataSet -> cancelFriendship($myID, $friendID);
     }
 
+    function acceptFriendship($myID, $friendID){
+        $friendDataSet = new friendsDataSet();
+        $friendDataSet ->acceptFriendship($myID, $friendID);
+    }
+
+    function rejectFriendship($myID, $friendID){
+        $friendsDataSet = new friendsDataSet();
+        $friendsDataSet -> rejectFriendship($myID, $friendID);
+    }
 }
