@@ -8,6 +8,12 @@
     <title>Find Friends</title>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet"/>
+    <?php
+    if ($view->pageTitle == 'Friend Map') {
+        echo '
+        <link rel="stylesheet" href="../../v6.14.1/css/ol.css" type="text/css">
+    ';
+    } ?>
 </head>
 <body>
 <div class="d-flex" id="wrapper">
@@ -35,6 +41,8 @@
                    href="receivedRequests.php"> &emsp; Received Requests</a>
                 <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom"
                    href="sentRequests.php"> &emsp; Sent Requests</a>
+                <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom"
+                   href="friendMap.php"> &emsp; Where are my friends?</a>
             </div>
         </div>
     </div>
@@ -65,4 +73,5 @@
                 </div>
             </div>
         </nav>
+
 
