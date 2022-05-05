@@ -1,7 +1,7 @@
 <?php
 
-require_once ('Models/Database.php');
-require_once ('Models/userData.php');
+require_once ('Database.php');
+require_once ('userData.php');
 
 
 class userDataSet
@@ -87,5 +87,12 @@ class userDataSet
         $sqlQuery = "insert into users (userFirstName, userSurname, userPhoneNumber, userEmail, userPassword, userLat, userLong) values  (?,?,?,?,?,?,?)";
         $statement = $this->_dbHandle->prepare($sqlQuery);
         $statement->execute(array($name,$surname,$phone, $email,$passwordHash,$lat,$long));
+    }
+
+    public function updateLocation($ID, $userLat, $userLong)
+    {
+        $sqlQuery = "UPDATE users SET userLat = ?, userLong =? WHERE (userID = ?) ";
+        $statement = $this->_dbHandle->prepare($sqlQuery);
+        $statement->execute(array($userLat, $userLong, $ID));
     }
 }

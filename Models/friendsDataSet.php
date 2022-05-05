@@ -1,7 +1,7 @@
 <?php
 
-require_once ('Models/Database.php');
-require_once ('Models/friendData.php');
+require_once ('Database.php');
+require_once ('friendData.php');
 
 class friendsDataSet
 {

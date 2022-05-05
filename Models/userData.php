@@ -1,6 +1,6 @@
 <?php
 
-class userData
+class userData implements JsonSerializable
 {
 
     protected $userID, $userFirstName, $userSurname, $userPhoneNumber, $userEmail, $userPassword, $userLat, $userLong;
@@ -15,6 +15,7 @@ class userData
         $this->userLat = $dbRow['userLat'];
         $this->userLong = $dbRow['userLong'];
     }
+
 
     //Accessor for user ID
     public function getUserID() {
@@ -57,4 +58,21 @@ class userData
     }
 
 
+    /**
+     * @return mixed
+     */
+    public function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
+        return [
+            'userID' => $this->userID,
+            'firstName' => $this->userFirstName,
+            'surname' => $this->userSurname,
+            'phoneNumber' => $this->userPhoneNumber,
+            'email' => $this->userEmail,
+            'password' => $this->userPassword,
+            'uLat' => $this->userLat,
+            'uLong' => $this->userLong,
+        ];
+    }
 }

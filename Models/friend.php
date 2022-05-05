@@ -1,5 +1,5 @@
 <?php
-require_once('Models/friendsDataSet.php');
+require_once('friendsDataSet.php');
 
 class friend
 {

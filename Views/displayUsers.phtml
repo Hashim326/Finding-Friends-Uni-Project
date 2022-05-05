@@ -9,9 +9,15 @@
                    <!--card to contain user info-->
                    <div class="card mb-4 box-shadow">
                         <div class="card-body">
-                            <h5>Friend ID number: <b class="text-primary">' . $userData->getUserID() . '</b></h5>
+                            <h5 id="uID'.$userData->getUserID().'">Friend ID number: <b class="text-primary">' . $userData->getUserID() . '</b></h5>
                             <h5>First Name: <b class="text-primary">' . $userData->getUserFirstName() . '</b></h5>
-                            <h5>Last Name: <b class="text-primary">' . $userData->getUserSurname() . '</b></h5>
+                            <h5>Last Name: <b class="text-primary">' . $userData->getUserSurname() . '</b></h5>';
+                            if ($view->pageTitle == 'My Friends') {
+                                echo '
+                            <h5 id="lat'.$userData->getUserID().'">Latitude: <b class="text-primary">' . $userData->getUserLat() . '</b></h5>
+                            <h5 id="long'.$userData->getUserID().'">Longitude: <b class="text-primary">' . $userData->getUserLong() . '</b></h5>';
+                            }
+                            echo '
                             <div class="d-flex justify-content-end align-items-center">
                             <form method="post" action="" class="form">
                                 <div class="btn-group">

@@ -1,67 +1,20 @@
-<?php require("Views/template/header.phtml") ?>
+
 <!-- Page content-->
-<div class="container-fluid">
+<div class="container-fluid" xmlns="">
     <h1 class="mt-4 text-center">Where Are My Friends?</h1>
 </div>
-<!--
-<script>
 
-</script>
--->
-<div id="map" class="map" style="width: 100%; height: 85%"></div>
+<div class="container-fluid justify-content-center ">
+    <div id="map" class="map mr-sm-5" style="width: 100%; height: 700px"></div>
+    <p class="" id="timer"></p>
+    <a class="align-items-end" href="https://www.flaticon.com/free-icons/location" title="location icons">Location icons created by IconMarketPK - Flaticon</a>
+</div>
+
 <script src="../../v6.14.1/build/ol.js"></script>
-<script>
-
-    function geoError(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-        drawMap()
-
-    }
-
-    if (!navigator.geolocation) {
-        console.textContext = 'Geolocation not available';
-        drawMap()
-
-    } else {
-        console.log('Locating...');
-        navigator.geolocation.getCurrentPosition(drawCustomMap, geoError);
-    }
-
-    function drawCustomMap(pos) {
-        var crd = pos.coords;
-
-        var map = new ol.Map({
-            target: 'map',
-            layers: [
-                new ol.layer.Tile({
-                    source: new ol.source.OSM()
-                })
-            ],
-            view: new ol.View({
-                center: ol.proj.fromLonLat([crd.longitude, crd.latitude]),
-                zoom: 6
-            })
-        })
-
-    }
-
-    function drawMap() {
-        var map = new ol.Map({
-            target: 'map',
-            layers: [
-                new ol.layer.Tile({
-                    source: new ol.source.OSM()
-                })
-            ],
-            view: new ol.View({
-                center: ol.proj.fromLonLat([15.2551, 54.5260]),
-                zoom: 4
-            })
-        })
-    }
-
-</script>
+<script src="https://unpkg.com/ol-popup@4.0.0"></script>
+<script src="../js/map.js"></script>
+<script src="../AJAX/getFriendLoc.js"></script>
 
 
-<?php require('template/footer.phtml') ?>
+
 

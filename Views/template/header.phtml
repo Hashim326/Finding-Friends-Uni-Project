@@ -9,9 +9,10 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet"/>
     <?php
-    if ($view->pageTitle == 'Friend Map') {
+    if ($view->pageTitle == 'Friend Map' || $view->pageTitle == 'My Friends') {
         echo '
         <link rel="stylesheet" href="../../v6.14.1/css/ol.css" type="text/css">
+        <link rel="stylesheet" href="https://unpkg.com/ol-popup@4.0.0/src/ol-popup.css" />
     ';
     } ?>
 </head>
@@ -41,8 +42,6 @@
                    href="receivedRequests.php"> &emsp; Received Requests</a>
                 <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom"
                    href="sentRequests.php"> &emsp; Sent Requests</a>
-                <a class="list-group-item list-group-item-action p-3 bg-dark text-white border-bottom"
-                   href="friendMap.php"> &emsp; Where are my friends?</a>
             </div>
         </div>
     </div>
