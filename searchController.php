@@ -22,4 +22,9 @@ if (isset($_POST['searchButton'])) {
         $_SESSION['errorSearch'] = "Please enter a search value";
         unset($_SESSION['searchVal']);
     }
+} elseif (isset($_GET['searchVal'])){
+    $_SESSION['selectedID'] = $_GET["searchVal"];
+    //echo $_SESSION['selectedID'];
+    //echo $_GET['searchVal'];
+     header("Location: viewProfile.php");
 }

@@ -13,13 +13,17 @@
                 <div class="form-group row pb-2">
                     <label for="searchVal" class="h5 col-sm-5">Search by name:</label>
                     <div class="col-sm-5">
-                        <input type="text" name="searchVal">
+                        <input id="searchBar" type="text" name="searchVal" onkeyup="performSearch(this.value)">
                     </div>
+                    <div class="col-sm-5"></div>
+                    <div class="col-sm-5 list-group" id="liveResults"></div>
                 </div>
 
                 <div class="d-flex justify-content-end pb-2">
                     <input type="submit" name="searchButton" value="Search" class="btn btn-outline-dark">
                 </div>
+
+
 
 
                 <div class="form-group row pb-2 pt-2 text-warning">
@@ -46,6 +50,8 @@ if (isset($_SESSION['searchVal'])) {
     require_once('Views/displayUsers.phtml');
 }
 ?>
+
+<script src="../AJAX/liveSearch.js "
 
 
 <?php require('template/footer.phtml') ?>

@@ -1,11 +1,8 @@
 <?php
-
-
 require_once('Models/Register.php');
 
-
 //performs check and registers users
-if (isset($_POST["regButton"])) {
+if (isset($_POST["firstNameReg"])) {
     $register = new Register();
     $nameReg = $_POST["firstNameReg"];
     $surnameReg = $_POST["lastNameReg"];
@@ -20,7 +17,7 @@ if (isset($_POST["regButton"])) {
             if ($register->checkPassword($passReg, $passRepReg) == true) {
                 if ($register->checkUserExists($emailReg) == false) {
                     $register->registerUser($nameReg, $surnameReg, $phoneReg, $emailReg, $passReg);
-                    unset($_SESSION['errorReg']);
+                    $_SESSION['errorReg'] = "You can now login";
                 } else {
                     $_SESSION['errorReg'] = "A user with this email already exists";
                 }
@@ -37,7 +34,7 @@ if (isset($_POST["regButton"])) {
 }
 //performs checks and logs user in
 if (isset($_POST['loginbutton'])) {
-
+    unset($_SESSION['errorReg']);
     $emailLogIn = $_POST['usernameLogIn'];
     $passLogIn = $_POST["passwordLogIn"];
 

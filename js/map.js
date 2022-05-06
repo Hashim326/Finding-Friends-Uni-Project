@@ -25,28 +25,65 @@ var vectorLayer = new ol.layer.Vector({
     })
 });
 
-//creates popup as overlay
-const popup = new Popup();
-map.addOverlay(popup);
+//assigns html elements to appropriate variables
+const container = document.getElementById('popup');
+const content = document.getElementById('popup-content');
+const closer = document.getElementById('popup-closer');
 
-//if marker and click are in the same place, display the name of the marker
-map.on("click", (event) => {
+//creates an overlay used to hold information about pin
+const overlay = new ol.Overlay({
+    element: container,
+    //pans the view across to the pin the user has clicked
+    autoPan: {
+        animation: {
+            duration: 250,
+        },
+    },
+});
+
+//adds the overlay to the map
+map.addOverlay(overlay);
+
+//closes the overlay element if close button is clicked
+closer.onclick = function () {
+    overlay.setPosition(undefined);
+    closer.blur();
+    //prevents pan animation from triggering
+    return false;
+};
+
+//map click handler
+map.on('singleclick', function (evt) {
+    //variable to hold name from the pin
     let name;
 
-    const features = map.getFeaturesAtPixel(event.pixel, {
+    //holds the coordinates of the users clicks
+    const coordinate = evt.coordinate;
+
+    //assigns the clicked feature (if at that location) to a variable
+    const features = map.getFeaturesAtPixel(evt.pixel, {
         layerFilter: (layer) => layer === vectorLayer
     });
 
+    //if retrieved feature exists display popup overlay
     if (features.length > 0){
+        //retrieves the name of the clicked pin
         const name = features[0].get("description");
         console.log(name);
-        popup.show(event.coordinate, '<b>'+ name +'</b>');
+
+        //outputs the name as html
+        content.innerHTML = '<b>'+ name +'</b>';
+        //sets the overlay to the user click position
+        overlay.setPosition(coordinate);
+        console.log(overlay.getPosition());
+        //popup.show(event.coordinate, '<b>'+ name +'</b>');
 
     } else {
-        popup.hide();
+        overlay.setPosition(undefined)
     }
-});
 
+
+});
 
 //returns the map error
 function geoError(err) {
@@ -54,11 +91,10 @@ function geoError(err) {
 
 }
 
-
-
 //sets marker on  the users current location
 function setCurUserMarker(pos) {
     var crd = pos.coords;
+    //generates marker at users current geo location
     var marker = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat([crd.longitude, crd.latitude])),
         description: "This is you",
@@ -71,6 +107,7 @@ function setCurUserMarker(pos) {
         counter++;
     }
 
+    //adds the marker to the vector layer
     //console.log(layer.getSource());
     vectorLayer.getSource().addFeature(marker);
 }

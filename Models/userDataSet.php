@@ -41,8 +41,22 @@ class userDataSet
         return $dataSet;
     }
 
+    //used to fetch all users with partial matches to input
     public function fetchUserByName($name) {
         $sqlQuery = "SELECT * FROM users WHERE userFirstName LIKE ? or userSurname LIKE ?";
+
+        $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
+        $statement->execute(array("%$name%", "%$name%")); // execute the PDO statement
+
+        $dataSet = [];
+        while ($row = $statement->fetch()) {
+            $dataSet[] = new userData($row);
+        }
+        return $dataSet;
+    }
+
+    public function fetchUserByNameLimit($name) {
+        $sqlQuery = "SELECT * FROM users WHERE userFirstName LIKE ? or userSurname LIKE ? LIMIT 10";
 
         $statement = $this->_dbHandle->prepare($sqlQuery); // prepare a PDO statement
         $statement->execute(array("%$name%", "%$name%")); // execute the PDO statement
