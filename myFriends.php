@@ -17,6 +17,10 @@ $view->userDataSet = $userDataSet;
 //$dataSet = [];
 $friendIDArr = [];
 
+//creates the token used for authenticating session in AJAX
+$token = substr(str_shuffle(MD5(microtime())), 0, 20);
+$_SESSION['authToken'] = $token;
+
 if ($view->friendsDataSet != null) {
     foreach ($view->friendsDataSet as $friendData) {
 

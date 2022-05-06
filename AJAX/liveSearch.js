@@ -1,6 +1,10 @@
 //creates xmlhttprequest object and assigns to variable
 let xmlRequest = new XMLHttpRequest();
 
+//fetches the auth token for the current page
+let authToken = document.getElementById("authToken").innerHTML;
+let authToken = 20;
+
 function performSearch(input) {
     console.log(input);
     if (input == "") {
@@ -22,34 +26,39 @@ function performSearch(input) {
                 var JSONdata;
                 document.getElementById("liveResults").innerHTML = "";
 
-                //parses received json data into variable
+                if (this.responseText == 'Invalid auth token'){
+                    console.log(this.responseText);
+                }else{
+                    //parses received json data into variable
+                    JSONdata = JSON.parse(this.responseText);
+                    //console.log(JSONdata);
 
-                JSONdata = JSON.parse(this.responseText);
-                //console.log(JSONdata);
+                    //if data has been retrieved, then it is output
+                    if (JSONdata !== null){
 
-                //if data has been retrieved, then it is output
-                if (JSONdata !== null){
+                        //creates edge of results box
+                        document.getElementById("liveResults").style.border = "thin solid #000000";
 
-                    //creates edge of results box
-                    document.getElementById("liveResults").style.border = "thin solid #000000";
+                        //for each user in the data, assign their info to variables
+                        JSONdata.forEach(function (obj) {
+                            const userID = obj.userID;
+                            console.log(userID);
+                            const firstName = obj.firstName;
+                            const surname = obj.surname;
 
-                    //for each user in the data, assign their info to variables
-                    JSONdata.forEach(function (obj) {
-                        const userID = obj.userID;
-                        console.log(userID);
-                        const firstName = obj.firstName;
-                        const surname = obj.surname;
+                            //adds user to the results list
+                            addUser(firstName, surname, userID)
 
-                        //adds user to the results list
-                        addUser(firstName, surname, userID)
+                        })
 
-                    })
-
+                    }
                 }
+
+
             }
         }
         //calls the php file to return search results as JSON using search value
-        xmlRequest.open('GET', 'AJAX/liveSearch.php?searchVal=' + input, true);
+        xmlRequest.open('GET', 'AJAX/liveSearch.php?searchVal=' + input + "&authToken=" + authToken, true);
         xmlRequest.send();
     }
 }

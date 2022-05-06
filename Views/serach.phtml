@@ -50,7 +50,7 @@ if (isset($_SESSION['searchVal'])) {
     require_once('Views/displayUsers.phtml');
 }
 ?>
-
+<?php echo '<p id="authToken" class="d-none">'.$_SESSION["authToken"].'</p>';?>
 <script src="../AJAX/liveSearch.js "
 
 

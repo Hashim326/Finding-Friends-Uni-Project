@@ -1,6 +1,10 @@
 //creates xmlhttpsrequest objetc and assigns to variable
 let xmlRequest = new XMLHttpRequest();
 
+//fetches the auth token for the current page
+let authToken = document.getElementById("authToken").innerHTML;
+//let authToken = 20;
+
 //refreshes location every 15 seconds
 if (document.getElementById('error').innerHTML !== null) {
     //call the getLocation function every at specified interval
@@ -33,28 +37,32 @@ function getLocation() {
             vectorLayer.getSource().clear();
             navigator.geolocation.getCurrentPosition(setCurUserMarker, geoError);
 
-            //variable to hold json data
-            var JSONdata;
-            //console.log('Hello');
-            //parses received json data into variable
-            JSONdata = JSON.parse(this.responseText);
-            //console.log(JSONdata);
-            //for each user in the data, assign their info to variables
-            JSONdata.forEach(function (obj){
-                    const lat = obj.uLat;
-                    const long = obj.uLong;
-                    const firstName = obj.firstName;
-                    const surname = obj.surname;
-                    //console.log(long + "----------------- long");
-                    //creates markers using user info
-                    createMarkerCoord(lat, long, firstName, surname)
-                }
-            )
+            if (this.responseText == 'Invalid auth token'){
+                console.log(this.responseText);
+            }else{
+                //variable to hold json data
+                var JSONdata;
+
+                //parses received json data into variable
+                JSONdata = JSON.parse(this.responseText);
+                //console.log(JSONdata);
+                //for each user in the data, assign their info to variables
+                JSONdata.forEach(function (obj){
+                        const lat = obj.uLat;
+                        const long = obj.uLong;
+                        const firstName = obj.firstName;
+                        const surname = obj.surname;
+                        //console.log(long + "----------------- long");
+                        //creates markers using user info
+                        createMarkerCoord(lat, long, firstName, surname)
+                    }
+                )
+            }
         }
 
     }
 
-    //if the system has already been intialised, only refresh current location pin, not the view.
+    //if the system has already been intialised, only refresh current location pin, not the whole view.
     if (counter == 1){
         navigator.geolocation.getCurrentPosition(getCoords);
     }
@@ -75,6 +83,6 @@ function getCoords(pos) {
 
 //calls ajax php to retrieve friend locations and updates user's last location.
 function sendXMLRequest(lat, long){
-    xmlRequest.open('GET', 'AJAX/getFriendLoc.php?long=' + lat + "&lat=" + long, true);
+    xmlRequest.open('GET', 'AJAX/getFriendLoc.php?long=' + lat + "&lat=" + long + "&authToken=" + authToken, true);
     xmlRequest.send();
 }
