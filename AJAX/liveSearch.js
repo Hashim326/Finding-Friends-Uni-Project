@@ -3,7 +3,7 @@ let xmlRequest = new XMLHttpRequest();
 
 //fetches the auth token for the current page
 let authToken = document.getElementById("authToken").innerHTML;
-let authToken = 20;
+//let authToken = 20;
 
 function performSearch(input) {
     console.log(input);

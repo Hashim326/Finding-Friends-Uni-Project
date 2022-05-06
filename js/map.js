@@ -20,7 +20,7 @@ var vectorLayer = new ol.layer.Vector({
     style: new ol.style.Style({
         image: new ol.style.Icon({
             anchor: [0.5, 1],
-            src: '../images/location-pin.png'
+            src: "https://agd643.poseidon.salford.ac.uk/Assignment2/images/location-pin.png"
         })
     })
 });
